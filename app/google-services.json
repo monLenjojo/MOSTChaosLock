@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "226957104921",
+    "firebase_url": "https://mostchaoslock.firebaseio.com",
+    "project_id": "mostchaoslock",
+    "storage_bucket": "mostchaoslock.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:226957104921:android:1ce466cf5ead150c",
+        "android_client_info": {
+          "package_name": "com.example.xo337.mostchaoslock"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "226957104921-6cc2rdsqob9ga12uijcvqrgg14q4vkv3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.xo337.mostchaoslock",
+            "certificate_hash": "71bf91262c07773c302d6d9502ce34843bbd632d"
+          }
+        },
+        {
+          "client_id": "226957104921-hodf6rvdubn2ub67dhq1osnc5nggq8pm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDorNPcwoecFkfSb2_M8pDDv75GHlx10GA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "226957104921-hodf6rvdubn2ub67dhq1osnc5nggq8pm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
