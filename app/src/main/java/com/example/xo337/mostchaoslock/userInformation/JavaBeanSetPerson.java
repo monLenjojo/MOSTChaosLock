@@ -2,17 +2,17 @@ package com.example.xo337.mostchaoslock.userInformation;
 
 public class JavaBeanSetPerson {
     String name;
-    String phone;
     String email;
+    String phone;
 
     public JavaBeanSetPerson() {
         super();
     }
 
-    public JavaBeanSetPerson(String name, String phone, String email) {
+    public JavaBeanSetPerson(String name, String email, String phone) {
         this.name = name;
-        this.phone = phone;
         this.email = email;
+        this.phone = phone;
     }
 
     public String getName() {

@@ -1,4 +1,4 @@
-package com.example.xo337.mostchaoslock.NetWorkCheck;
+package com.example.xo337.mostchaoslock.netWorkCheck;
 
 import android.content.Context;
 import android.content.DialogInterface;

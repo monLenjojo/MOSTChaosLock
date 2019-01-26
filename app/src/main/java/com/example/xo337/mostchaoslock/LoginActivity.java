@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import com.example.xo337.mostchaoslock.NetWorkCheck.NetWorkCheck;
+import com.example.xo337.mostchaoslock.netWorkCheck.NetWorkCheck;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
