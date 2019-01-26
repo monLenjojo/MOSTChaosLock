@@ -13,7 +13,7 @@ public class NetWorkCheck {
         this.context = context;
     }
 
-    public void netWorkCheck() {
+    public void getNetWorkCheck() {
         ConnectivityManager connManager = (ConnectivityManager) context.getSystemService(context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connManager.getActiveNetworkInfo();
         if (networkInfo == null || !networkInfo.isConnected()) {
@@ -24,7 +24,7 @@ public class NetWorkCheck {
                     .setPositiveButton("完成", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            netWorkCheck();
+                            getNetWorkCheck();
                         }
                     })
                     .setNeutralButton("取消", new DialogInterface.OnClickListener() {

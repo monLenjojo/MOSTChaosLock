@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void loginButton(View view) {
         view.setEnabled(false);
-        netWorkCheck.netWorkCheck();
+        netWorkCheck.getNetWorkCheck();
         Boolean checkState = true;
         edEmail.setError(null);
         edPassword.setError(null);
