@@ -70,26 +70,12 @@ public class UserInformationGetOnFirebase {
     };
 
     private void getData(DataSnapshot dataSnapshot, String s) {
-        Log.d("TEST123",dataSnapshot.getValue().toString() + s);
-//        JavaBeanSetPerson data = dataSnapshot.getValue(JavaBeanSetPerson.class);
-//        if (!TextUtils.isEmpty(data.name)) {
-        if(TextUtils.isEmpty(s)){
-//            txAddress.setText(dataSnapshot.getValue().toString());
-        }else {
-            switch (s) {
-                case "myRoomList":
-                    txName.setText(dataSnapshot.getValue().toString());
-                    break;
-                case "address":
-                    txEmail.setText(dataSnapshot.getValue().toString());
-                    break;
-                case "name":
-                    txPhone.setText(dataSnapshot.getValue().toString());
-                    break;
-            }
+        Log.d("TEST123",dataSnapshot.getValue().toString() + "\t||\t"+s);
+            JavaBeanSetPerson data = dataSnapshot.getValue(JavaBeanSetPerson.class);
+            txEmail.setText(data.getEmail());
+            txName.setText(data.getName());
+            txPhone.setText(data.getPhone());
         }
-//        }
-    }
 }
 
 

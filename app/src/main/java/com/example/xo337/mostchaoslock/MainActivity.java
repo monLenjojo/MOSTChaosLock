@@ -29,7 +29,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class MainActivity extends AppCompatActivity {
     FirebaseAuth auth;
     private
-    String checkBoxString,firebaseUid;
+    String checkBoxString;
+    public static String firebaseUid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +46,9 @@ public class MainActivity extends AppCompatActivity {
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
 //                auth.signOut();
-                AddTestData testData = new AddTestData();
-                testData.add(10,testData.DEVICE_MODULE_LOCK,"null","null");
+//                AddTestData testData = new AddTestData();
+//                testData.add(10,testData.DEVICE_MODULE_LOCK,"null","null");
+                addNewDevice();
             }
         });
         auth = FirebaseAuth.getInstance();
@@ -143,16 +145,17 @@ public class MainActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         switch (id) {
-            case R.id.action_addDevice:
-                addNewDevice();
+            case R.id.action_account:
+                Intent pageAccount = new Intent(this,UserInformationActivity.class);
+                startActivity(pageAccount);
                 return true;
-            case R.id.action_settings:
+            case R.id.action_logout:
+                auth.signOut();
+                firebaseUid = null;
                 return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

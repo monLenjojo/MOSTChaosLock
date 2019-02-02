@@ -130,7 +130,7 @@ public class RegisterActivity extends AppCompatActivity {
                     if (task.isComplete()) {
                         if (task.isSuccessful()) {
                             JavaBeanSetPerson data = new JavaBeanSetPerson(name, email, phone);
-                            FirebaseDatabase.getInstance().getReference("userList").child(auth.getUid()).setValue(data);
+                            FirebaseDatabase.getInstance().getReference("userList").child(auth.getUid()).child("myData").setValue(data);
                         }
                     }
                 }

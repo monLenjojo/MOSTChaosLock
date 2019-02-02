@@ -29,11 +29,11 @@ public class UserInformationSharedPreferences {
         sharedPreferences.edit().putString("userPhone",phone);
         sharedPreferences.edit().commit();
     }
-
-    public void setAddress(String address){
-        sharedPreferences.edit().putString("userAddress",address);
-        sharedPreferences.edit().commit();
-    }
+//
+//    public void setAddress(String address){
+//        sharedPreferences.edit().putString("userAddress",address);
+//        sharedPreferences.edit().commit();
+//    }
 
     public void setEmail(String email){
         sharedPreferences.edit().putString("userEmail",email);

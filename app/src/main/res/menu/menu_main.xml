@@ -3,12 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.xo337.mostchaoslock.MainActivity">
     <item
-        android:id="@+id/action_addDevice"
-        android:title="Add Device"
+        android:icon="@drawable/ic_keyboard_arrow_down_black_24dp"
+        android:title="Item"
+        app:showAsAction="always">
+        <menu>
+    <item
+        android:id="@+id/action_account"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="Account"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:id="@+id/action_logout"
+        android:icon="@drawable/ic_directions_run_black_24dp"
+        android:title="Logout"
         app:showAsAction="never" />
+</menu>
+    </item>
 </menu>

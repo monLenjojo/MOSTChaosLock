@@ -28,6 +28,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        android:tint="@color/common_google_signin_btn_text_dark_default"
+        app:backgroundTint="@color/colorPrimary"
+        app:rippleColor="@color/zxing_possible_result_points"
+        app:srcCompat="@drawable/ic_add_circle_black_24dp" />
 
 </android.support.design.widget.CoordinatorLayout>

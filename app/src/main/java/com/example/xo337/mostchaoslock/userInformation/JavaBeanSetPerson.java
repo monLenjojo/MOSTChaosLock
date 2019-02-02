@@ -1,9 +1,9 @@
 package com.example.xo337.mostchaoslock.userInformation;
 
 public class JavaBeanSetPerson {
-    String name;
-    String email;
-    String phone;
+    private String name;
+    private String email;
+    private String phone;
 
     public JavaBeanSetPerson() {
         super();
