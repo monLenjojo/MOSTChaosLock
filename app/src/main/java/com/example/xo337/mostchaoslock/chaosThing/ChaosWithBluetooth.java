@@ -2,6 +2,7 @@ package com.example.xo337.mostchaoslock.chaosThing;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -37,7 +38,7 @@ public class ChaosWithBluetooth {
         return bluetoothTest.isConnected();
     }
 
-    public void chaosAndSend(Float doorKey) {
+    public void chaosAndSend(double doorKey) {
         chaosMath.chaosMath();
         bluetoothTest.send(chaosMath.getU1());
         bluetoothTest.send((1 + (chaosMath.getX1() * chaosMath.getX1())) * doorKey);
@@ -50,24 +51,25 @@ public class ChaosWithBluetooth {
             String[] keyArray = doorKey.split("/");
             switch (state) {
                 case "A":
-                    chaosAndSend(Float.valueOf(keyArray[0]));
+                    chaosAndSend(Double.valueOf(keyArray[0]));
                     Log.d("ChoasWithBluetooth", String.valueOf(keyArray[0]));
                     runRnlockLoop(doorKey, bluetoothTest.getCheckMCUState());
                     break;
                 case "B":
-                    chaosAndSend(Float.valueOf(keyArray[1]));
+                    chaosAndSend(Double.valueOf(keyArray[1]));
                     Log.d("ChoasWithBluetooth", String.valueOf(keyArray[1]));
                     runRnlockLoop(doorKey, bluetoothTest.getCheckMCUState());
                     break;
                 case "C":
-                    chaosAndSend(Float.valueOf(keyArray[2]));
+                    chaosAndSend(Double.valueOf(keyArray[2]));
                     Log.d("ChoasWithBluetooth", String.valueOf(keyArray[2]));
                     runRnlockLoop(doorKey, bluetoothTest.getCheckMCUState());
+                    new AlertDialog.Builder(context).setMessage("解鎖成功，您已可以開啟鎖具").show();
                     break;
                 case "E":
                     chaosMath = new ChaosMath();
                     chaosMath.inti();
-                    chaosAndSend(Float.valueOf(keyArray[0]));
+                    chaosAndSend(Double.valueOf(keyArray[0]));
                     Log.d("ChoasWithBluetooth", String.valueOf(keyArray[0]));
                     runRnlockLoop(doorKey, bluetoothTest.getCheckMCUState());
                     break;
@@ -79,7 +81,8 @@ public class ChaosWithBluetooth {
     }
 
     public void unlock(final String itemNum) {
-                getOnFirebaseKey(itemNum);
+        new AlertDialog.Builder(context).setMessage("開始進行解鎖\n正在獲取金鑰...").show();
+        getOnFirebaseKey(itemNum);
     }
 
     public void getOnFirebaseKey(String itemNum) {
@@ -95,19 +98,21 @@ public class ChaosWithBluetooth {
                     key[0] = dataSnapshot.getValue(JavaBeanDeviceKey.class);
                     Log.d("ChoasWithBluetooth", key[0].getChaosKey());
                     findState[0] = true;
+                    new AlertDialog.Builder(context).setMessage("開始進行解鎖\n正在獲取金鑰...成功\n連線中...").show();
                     if (isConnect()) {
+                        new AlertDialog.Builder(context).setMessage("開始進行解鎖\n正在獲取金鑰...成功\n連線中...成功\n正在進行解鎖...").show();
 //                    runRnlockLoop("-12345/-543.21/21.354","A");
                         runRnlockLoop(key[0].getChaosKey(), "A");
                     } else {
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
+//                        new Thread(new Runnable() {
+//                            @Override
+//                            public void run() {
                                 if (connect(key[0].getMacAddress())) {
-//                        runRnlockLoop("-12345/-543.21/21.354","A");
+                                    new AlertDialog.Builder(context).setMessage("開始進行解鎖\n正在獲取金鑰...成功\n連線中...成功\n正在進行解鎖...").show();
                                     runRnlockLoop(key[0].getChaosKey(), "A");
                                 }
-                            }
-                        }).start();
+//                            }
+//                        }).start();
                     }
                 }
             }

@@ -60,15 +60,15 @@ public class DeviceControlActivity extends AppCompatActivity {
                 }
                 return true;
             case R.id.navigation_key:
-                Toast.makeText(DeviceControlActivity.this, "start unLock", Toast.LENGTH_SHORT).show();
+                new AlertDialog.Builder(DeviceControlActivity.this).setMessage("開始進行解鎖").show();
                 new NetWorkCheck(DeviceControlActivity.this).getNetWorkCheck();
                 try {
                     chaosWithBluetooth.unlock(deviceId);
-                    SimpleDateFormat tineFormat = new SimpleDateFormat("yyyy/MM/dd");
-                    String date = tineFormat.format(new Date().getTime());
-                    FirebaseDatabase.getInstance().getReference("passRecord").child(deviceId).push().setValue(new JavaBeanPassRecord("name",date,"https://firebasestorage.googleapis.com/v0/b/mostchaoslock.appspot.com/o/testImage.jpg?alt=media&token=a7a6ab56-6595-4ebe-bef8-ed80c3052edc"));
+//                    SimpleDateFormat tineFormat = new SimpleDateFormat("yyyy/MM/dd");
+//                    String date = tineFormat.format(new Date().getTime());
+//                    FirebaseDatabase.getInstance().getReference("passRecord").child(deviceId).push().setValue(new JavaBeanPassRecord("name",date,"https://firebasestorage.googleapis.com/v0/b/mostchaoslock.appspot.com/o/testImage.jpg?alt=media&token=a7a6ab56-6595-4ebe-bef8-ed80c3052edc"));
                 }catch (Exception e){
-                    Toast.makeText(DeviceControlActivity.this, "請等待片刻後，再重新嘗試", Toast.LENGTH_SHORT).show();
+                    new AlertDialog.Builder(DeviceControlActivity.this).setMessage("請等待片刻後，再重新嘗試").show();
                 }
                 return true;
             }

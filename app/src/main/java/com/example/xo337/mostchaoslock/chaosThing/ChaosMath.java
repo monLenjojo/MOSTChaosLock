@@ -5,18 +5,18 @@ import android.util.Log;
 import java.math.BigDecimal;
 
 public class ChaosMath {
-    float g1, g2, g3, g4;
-    float h1, h2;
-    float j1, j2;
-    float u1, u2;
-    float ax1, ax2, ax3;
-    float dx1, dx2, dx3;
-    float A;
-    float c1, c2;
-    float x1, x2, x3;
-    float x1s, x2s, x3s;
-    float y1, y2, y3;
-    float y1s, y2s, y3s;
+    double g1, g2, g3, g4;
+    double h1, h2;
+    double j1, j2;
+    double u1, u2;
+    double ax1, ax2, ax3;
+    double dx1, dx2, dx3;
+    double A;
+    double c1, c2;
+    double x1, x2, x3;
+    double x1s, x2s, x3s;
+    double y1, y2, y3;
+    double y1s, y2s, y3s;
     int testTime = 0;
 
 //    public ChaosMath(float x1, float x2, float x3, float y1, float y2, float y3) {
@@ -28,10 +28,10 @@ public class ChaosMath {
 //        this.y3 = y3;
 //    }
 
-    public float sub(float v1, float v2) {
-        BigDecimal b1 = new BigDecimal(Float.toString(v1));
-        BigDecimal b2 = new BigDecimal(Float.toString(v2));
-        return b1.setScale(5, 0).subtract(b2.setScale(5, 0)).floatValue();
+    public double sub(double v1, double v2) {
+        BigDecimal b1 = new BigDecimal(Double.toString(v1));
+        BigDecimal b2 = new BigDecimal(Double.toString(v2));
+        return b1.setScale(5, 0).subtract(b2.setScale(5, 0)).doubleValue();
     }
     public void chaosSystem() {
         g1 = -(ax1 / (ax2 * ax2));
@@ -76,9 +76,9 @@ public class ChaosMath {
         dx1 = 1;
         dx2 = 1;
         dx3 = 1;
-        c1 = (float) -0.5;
-        c2 = (float) 0.06;
-        A = (float) 0.1;
+        c1 = (double) -0.5;
+        c2 = (double) 0.06;
+        A = (double) 0.1;
         x1 = -0.1f;
         x2 = 0.4f;
         x3 = -0.3f;
@@ -89,9 +89,9 @@ public class ChaosMath {
 
     public void chaosMath() { //手機端的混沌公式
         g1 = -(ax1 / (ax2 * ax2));
-        g2 = (float) 2 * ax1 * dx2 / (ax2 * ax2);
-        g3 = (float) -0.1 * ax1 / ax3;
-        g4 = (float) (ax1 * (1.76 - (dx2 * dx2) / (ax2 * ax2) + 0.1 * ax1 * dx3 / ax3) + dx1);
+        g2 = (double) 2 * ax1 * dx2 / (ax2 * ax2);
+        g3 = (double) -0.1 * ax1 / ax3;
+        g4 = (double) (ax1 * (1.76 - (dx2 * dx2) / (ax2 * ax2) + 0.1 * ax1 * dx3 / ax3) + dx1);
 
         h1 = ax2 / ax1;
         h2 = -(ax2 * dx1) / ax1 + dx2;
@@ -110,11 +110,11 @@ public class ChaosMath {
         Log.d("Math", "x1=：\t" + x1+"\tx1s=：\t" + x1s);
     }
 
-    public float getU1() {
+    public double getU1() {
         return u1;
     }
 
-    public float getX1() {
+    public double getX1() {
         return x1;
     }
 
