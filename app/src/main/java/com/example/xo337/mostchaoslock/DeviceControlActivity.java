@@ -46,8 +46,7 @@ public class DeviceControlActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
             switch (menuItem.getItemId()){
             case R.id.navigation_share:
-//                Toast.makeText(DeviceControlActivity.this, "1", Toast.LENGTH_SHORT).show();
-
+                    //Toast.makeText(DeviceControlActivity.this, "1", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent("la.droid.qr.scan");    //使用QRDroid的掃描功能
                 i.putExtra("la.droid.qr.complete", true);   //完整回傳，不截掉scheme
                 try {
@@ -60,19 +59,20 @@ public class DeviceControlActivity extends AppCompatActivity {
                 }
                 return true;
             case R.id.navigation_key:
-                new AlertDialog.Builder(DeviceControlActivity.this).setMessage("開始進行解鎖").show();
+                android.support.v7.app.AlertDialog.Builder alertDialog = new android.support.v7.app.AlertDialog.Builder(DeviceControlActivity.this);
+                alertDialog.setMessage("開始進行解鎖").show();
                 new NetWorkCheck(DeviceControlActivity.this).getNetWorkCheck();
-                try {
+
                     chaosWithBluetooth.unlock(deviceId);
 //                    SimpleDateFormat tineFormat = new SimpleDateFormat("yyyy/MM/dd");
 //                    String date = tineFormat.format(new Date().getTime());
 //                    FirebaseDatabase.getInstance().getReference("passRecord").child(deviceId).push().setValue(new JavaBeanPassRecord("name",date,"https://firebasestorage.googleapis.com/v0/b/mostchaoslock.appspot.com/o/testImage.jpg?alt=media&token=a7a6ab56-6595-4ebe-bef8-ed80c3052edc"));
-                }catch (Exception e){
-                    new AlertDialog.Builder(DeviceControlActivity.this).setMessage("請等待片刻後，再重新嘗試").show();
+
+                    try {}catch (Exception e){
+                    alertDialog.setMessage("請等待片刻後，再重新嘗試").show();
                 }
                 return true;
             }
-
             return false;
         }
     };
@@ -160,10 +160,8 @@ public class DeviceControlActivity extends AppCompatActivity {
                             });
                         }
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-
                     }
                 });
             } else {

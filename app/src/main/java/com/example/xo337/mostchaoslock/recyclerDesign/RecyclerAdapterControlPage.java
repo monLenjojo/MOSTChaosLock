@@ -1,8 +1,11 @@
 package com.example.xo337.mostchaoslock.recyclerDesign;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,10 +58,15 @@ public class RecyclerAdapterControlPage extends RecyclerView.Adapter<RecyclerAda
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Glide.with(context)
-                            .load(arrayList.get(getAdapterPosition()).getUrl())
-                            .error(R.drawable.common_google_signin_btn_icon_dark)
-                            .into(imageView);
+//                    Glide.with(context)
+//                            .load(arrayList.get(getAdapterPosition()).getUrl())
+//                            .error(R.drawable.common_google_signin_btn_icon_dark)
+//                            .into(imageView);
+
+                    byte[] decode = Base64.decode(arrayList.get(getAdapterPosition()).getUrl(),
+                                                Base64.DEFAULT);
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(decode,0,decode.length);
+                    imageView.setImageBitmap(bitmap);
                 }
             });
         }

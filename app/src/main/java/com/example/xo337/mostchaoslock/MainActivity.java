@@ -1,10 +1,15 @@
 package com.example.xo337.mostchaoslock;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -12,62 +17,25 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.xo337.mostchaoslock.firebase.AddTestData;
 import com.example.xo337.mostchaoslock.firebase.BelongNewDevice;
 import com.example.xo337.mostchaoslock.recyclerDesign.RecyclerFunctionHomePage;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
+    public static String firebaseUid;
     FirebaseAuth auth;
+    CheckBox checkBox_Lock, checkBox_check, checkBox_camera;
     private
     String checkBoxString;
-    public static String firebaseUid;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//                auth.signOut();
-//                AddTestData testData = new AddTestData();
-//                testData.add(10,testData.DEVICE_MODULE_LOCK,"null","null");
-                addNewDevice();
-            }
-        });
-        auth = FirebaseAuth.getInstance();
-        auth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if (firebaseAuth.getCurrentUser()==null) {
-                    Intent pag = new Intent(MainActivity.this,LoginActivity.class);
-                    startActivity(pag);
-                    MainActivity.this.finish();
-                }else {
-                    firebaseUid = firebaseAuth.getUid();
-                    RecyclerView recyclerView = findViewById(R.id.recyclerHomeView);
-                    RecyclerFunctionHomePage view = new RecyclerFunctionHomePage(MainActivity.this,recyclerView,firebaseUid);
-                }
-            }
-        });
-    }
-    CheckBox checkBox_Lock, checkBox_check, checkBox_camera;
     CheckBox.OnCheckedChangeListener checkBoxListener = new CheckBox.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -97,6 +65,46 @@ public class MainActivity extends AppCompatActivity {
             Log.e("CheckBox", "choose： " + checkBoxString);
         }
     };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//                auth.signOut();
+//                AddTestData testData = new AddTestData();
+//                testData.add(10,testData.DEVICE_MODULE_LOCK,"null","null");
+
+                addNewDevice();
+
+            }
+        });
+        auth = FirebaseAuth.getInstance();
+        auth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if (firebaseAuth.getCurrentUser() == null) {
+                    Intent pag = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(pag);
+                    MainActivity.this.finish();
+                } else {
+                    firebaseUid = firebaseAuth.getUid();
+                    RecyclerView recyclerView = findViewById(R.id.recyclerHomeView);
+                    RecyclerFunctionHomePage view = new RecyclerFunctionHomePage(MainActivity.this, recyclerView, firebaseUid);
+                }
+            }
+        });
+
+
+    }
     private void addNewDevice() {
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
         LayoutInflater layoutInflater = LayoutInflater.from(MainActivity.this);
@@ -126,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "要記得選擇產品呦", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                new BelongNewDevice(MainActivity.this).addDevice(deviceKey,firebaseUid,deviceName);
+                new BelongNewDevice(MainActivity.this).addDevice(deviceKey, firebaseUid, deviceName);
 //                new AddDevice(new JavaBeanSetDevice(deviceName,deviceKey,checkBoxString),firebaseUid,MainActivity.this);
             }
         }).setNegativeButton("cancel", null).show();
@@ -148,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         switch (id) {
             case R.id.action_account:
-                Intent pageAccount = new Intent(this,UserInformationActivity.class);
+                Intent pageAccount = new Intent(this, UserInformationActivity.class);
                 startActivity(pageAccount);
                 return true;
             case R.id.action_logout:

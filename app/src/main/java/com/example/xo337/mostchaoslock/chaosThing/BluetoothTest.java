@@ -50,6 +50,15 @@ public class BluetoothTest {
         return false;
     }
 
+    public void sendUid(){
+        String s = "kjxlTafsmjWjRd5kIUwxMWbrU053";
+        try {
+            write.write(s.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     String log = "test", strSet = "0";
 
     public void send(double val) {
