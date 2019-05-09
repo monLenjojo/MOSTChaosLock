@@ -105,10 +105,12 @@ public class ChaosWithBluetooth {
 //                        alertDialog.setMessage("開始進行解鎖\n正在獲取金鑰...成功\n連線中...成功\n正在進行解鎖...").show();
 //                    runRnlockLoop("-12345/-543.21/21.354","A");
                         runRnlockLoop(key[0].getChaosKey(), "A");
+                        setSocketNull();
                     } else {
                                 if (connect(key[0].getMacAddress())) {
 //                                    alertDialog.setMessage("開始進行解鎖\n正在獲取金鑰...成功\n連線中...成功\n正在進行解鎖...").show();
                                     runRnlockLoop(key[0].getChaosKey(), "A");
+                                    setSocketNull();
                                 }
                     }
                 }
@@ -133,4 +135,6 @@ public class ChaosWithBluetooth {
     public void setSocketNull() {
         bluetoothTest.setSocketNull();
     }
+
+
 }

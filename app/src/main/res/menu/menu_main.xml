@@ -7,11 +7,11 @@
         android:title="Item"
         app:showAsAction="always">
         <menu>
-    <item
-        android:id="@+id/action_account"
-        android:icon="@drawable/ic_person_black_24dp"
-        android:title="Account"
-        app:showAsAction="never" />
+            <item
+                android:id="@+id/action_account"
+                android:icon="@drawable/ic_person_black_24dp"
+                android:title="Account"
+                app:showAsAction="never" />
     <item
         android:id="@+id/action_logout"
         android:icon="@drawable/ic_directions_run_black_24dp"

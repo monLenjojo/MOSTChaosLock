@@ -106,8 +106,7 @@ public class DeviceControlActivity extends AppCompatActivity {
             this.finish();
         }
         RecyclerView recyclerView = findViewById(R.id.controlRecyclerView);
-        ImageView imageView = findViewById(R.id.controlImage);
-        RecyclerFunctionControlPage recyclerFunctionControlPage = new RecyclerFunctionControlPage(this,recyclerView,MainActivity.firebaseUid,deviceId,imageView);
+        RecyclerFunctionControlPage recyclerFunctionControlPage = new RecyclerFunctionControlPage(this,recyclerView,MainActivity.firebaseUid,deviceId);
         TextView name = findViewById(R.id.controlText_deviceName);
         name.setText(deviceName);
         final TextView module = findViewById(R.id.controlText_deviceModule);

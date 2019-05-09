@@ -22,16 +22,14 @@ public class RecyclerFunctionControlPage {
     Context context;
     RecyclerView recyclerView;
     String firebaseId,deviceId;
-    ImageView imageView;
     DatabaseReference dataRef;
     ArrayList<JavaBeanPassRecord> arrayList = new ArrayList<JavaBeanPassRecord>();
 
-    public RecyclerFunctionControlPage(Context context, RecyclerView recyclerView, String firebaseId, String deviceId, ImageView imageView) {
+    public RecyclerFunctionControlPage(Context context, RecyclerView recyclerView, String firebaseId, String deviceId) {
         this.context = context;
         this.recyclerView = recyclerView;
         this.firebaseId = firebaseId;
         this.deviceId = deviceId;
-        this.imageView = imageView;
         dataRef = FirebaseDatabase.getInstance().getReference("passRecord").child(deviceId);
         dataRef.addChildEventListener(new ChildEventListener() {
             @Override
@@ -67,8 +65,11 @@ public class RecyclerFunctionControlPage {
 
     private void upData(){
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        RecyclerAdapterControlPage adapter = new RecyclerAdapterControlPage(context,arrayList,firebaseId,imageView);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(layoutManager);
+        RecyclerAdapterControlPage adapter = new RecyclerAdapterControlPage(context,arrayList,firebaseId);
         recyclerView.setAdapter(adapter);
     }
 }

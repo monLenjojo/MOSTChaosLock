@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.view.LayoutInflater;
@@ -22,19 +23,18 @@ public class RecyclerAdapterControlPage extends RecyclerView.Adapter<RecyclerAda
     Context context;
     ArrayList<JavaBeanPassRecord> arrayList;
     String firebaseId;
-    ImageView imageView;
 
-    public RecyclerAdapterControlPage(Context context, ArrayList<JavaBeanPassRecord> arrayList, String firebaseId, ImageView imageView) {
+    public RecyclerAdapterControlPage(Context context, ArrayList<JavaBeanPassRecord> arrayList, String firebaseId){
         this.context = context;
         this.arrayList = arrayList;
         this.firebaseId = firebaseId;
-        this.imageView = imageView;
     }
 
     @NonNull
     @Override
     public RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.recycler_pass_record_list_view,viewGroup,false);
+        View view = LayoutInflater.from(context)
+                .inflate(R.layout.recycler_pass_record_list_view,viewGroup,false);
         return new RecyclerViewHolder(view);
     }
 
@@ -62,11 +62,17 @@ public class RecyclerAdapterControlPage extends RecyclerView.Adapter<RecyclerAda
 //                            .load(arrayList.get(getAdapterPosition()).getUrl())
 //                            .error(R.drawable.common_google_signin_btn_icon_dark)
 //                            .into(imageView);
-
-                    byte[] decode = Base64.decode(arrayList.get(getAdapterPosition()).getUrl(),
-                                                Base64.DEFAULT);
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
+                    LayoutInflater layoutInflater = LayoutInflater.from(context);
+                    View alertDialogView = layoutInflater.inflate(R.layout.alertdialog_photo, null);
+                    ImageView imageView = alertDialogView.findViewById(R.id.controlImage);
+                    byte[] decode = Base64.decode(
+                            arrayList.get(getAdapterPosition()).getUrl(),
+                            Base64.DEFAULT
+                    );
                     Bitmap bitmap = BitmapFactory.decodeByteArray(decode,0,decode.length);
                     imageView.setImageBitmap(bitmap);
+                    alertDialog.setView(alertDialogView).show();
                 }
             });
         }

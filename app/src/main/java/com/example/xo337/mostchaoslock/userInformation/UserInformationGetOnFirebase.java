@@ -30,7 +30,7 @@ public class UserInformationGetOnFirebase {
     public void updataNewInformation(String item, String value){
         HashMap<String,Object> hashMap = new HashMap<>();
         hashMap.put(item,value);
-        databaseReference.updateChildren(hashMap);
+        databaseReference.child("myData").updateChildren(hashMap);
     }
 
     public void addListenter() {
